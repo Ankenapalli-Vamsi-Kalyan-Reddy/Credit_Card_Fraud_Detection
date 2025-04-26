@@ -21,3 +21,25 @@ legit = credit_card_data[credit_card_data.Class == 0]
 fraud = credit_card_data[credit_card_data.Class == 1]
 print(legit.shape)
 print(fraud.shape)
+
+
+legit.Amount.describe()
+
+fraud.Amount.describe()
+
+credit_card_data.groupby('Class').mean()
+
+legit_sample = legit.sample(n=492)
+
+new_dataset = pd.concat([legit_sample, fraud], axis=0)
+
+new_dataset.head()
+
+new_dataset.tail()
+
+new_dataset['Class'].value_counts()
+
+new_dataset.groupby('Class').mean()
+
+X = new_dataset.drop(columns='Class', axis=1)
+Y = new_dataset['Class']
